@@ -1,0 +1,115 @@
+```
+# network
+resource "google_compute_network" "custom" {
+  name                    = "my-network"
+  auto_create_subnetworks = false
+}
+
+resource "google_compute_subnetwork" "custom" {
+  name          = "my-subnet"
+  ip_cidr_range = "10.0.1.0/24"
+  region        = "europe-west1"
+  network       = google_compute_network.custom.id
+}
+```
+```
+# firewall
+resource "google_compute_firewall" "rules" {
+  name        = "my-firewall-rule"
+  network       = google_compute_network.custom.id
+  description = "firewall rule"
+
+#  allow {
+#    protocol = "tcp"
+#    ports    = ["80", "443"]
+#  }
+  allow {
+    protocol = "ssh"
+    ports    = ["22"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
+  source_tags = ["foo"]  <<<?
+  target_tags = ["web"]  <<<?
+}
+```
+### compute engine
+```
+resource "google_compute_instance" "custom_subnet" {
+  name         = "my-vm-instance"
+  tags         = ["web"]   #<<<OK?
+
+  machine_type = "e2-small"
+  zone         = "europe-west1-b"
+
+  hostname = "hashicorptest.com"
+
+  network_interface {
+    network    = google_compute_network.custom.id
+    subnetwork = google_compute_subnetwork.custom.id
+#    中身がなくてもこれをつけないと外部IPが付与されない
+    access_config {
+    }
+  }
+#  network_interface {
+#    network = "default"
+#    access_config {
+#    }
+#  }
+
+  boot_disk {
+    initialize_params {
+      image = "debian-cloud/debian-10"
+    }
+  }
+
+  // Local SSD disk
+#  scratch_disk {
+#    interface = "SCSI"
+#  }
+}
+```
+
+```
+resource "google_service_account" "default" {
+  account_id   = "service-account-id"
+  display_name = "Service Account"
+}
+resource "google_compute_instance" "default" {
+  service_account {
+    email  = google_service_account.default.email
+    scopes = ["cloud-platform"]
+  }
+}
+```
+
+
+```
+# command-memo
+gcloud config set project dev-chottodake-open-test
+
+gcloud services list --format='csv(TITLE,NAME)'
+
+gcloud services enable cloudresourcemanager.googleapis.com
+gcloud services enable compute.googleapis.com
+gcloud services disable compute.googleapis.com --force
+
+gcloud compute regions list | grep NAME
+gcloud compute regions list --format='csv(NAME)'
+gcloud compute zones list | grep NAME
+gcloud compute zones list --format='csv(REGION,NAME)'
+
+gcloud compute images list --format='csv(PROJECT,NAME,FAMILY)' | grep ubuntu | grep mini | grep lts
+
+terraform graph | dot -Tpng > graph.png
+```
+
+```
+# alias-memo
+alias h='cat ~/.bash_history | sort | uniq | grep -v "h " | grep '
+```
+
+```
+# git-memo
+git init
+```
