@@ -1,9 +1,9 @@
 # terraform
 terraform {
-    backend "gcs" {
-        bucket = "test.open.chottodake.dev"
-        prefix = "terraform"
-    }
+  backend "gcs" {
+    bucket = "test.open.chottodake.dev"
+    prefix = "terraform"
+  }
 }
 # service
 resource "google_project_service" "cloudresourcemanager" {
@@ -11,7 +11,7 @@ resource "google_project_service" "cloudresourcemanager" {
 }
 
 resource "google_project_service" "compute" {
-  service = "compute.googleapis.com"
+  service    = "compute.googleapis.com"
   depends_on = [google_project_service.cloudresourcemanager]
 }
 
