@@ -67,7 +67,7 @@ gcloud services disable storage.googleapis.com
 
 # gcloud projects add-iam-policy-binding dev-chottodake-open-test \
 #     --member="serviceAccount:terraform@dev-chottodake-open-test.iam.gserviceaccount.com" \
-#     --role="roles/editor"
+#     --role="roles/owner"
 
 # create buckets for tfstate
 # gcloud services enable storage.googleapis.com
