@@ -10,11 +10,11 @@ gcloud services list --format='csv(TITLE,NAME)' \
 chmod +x disable-services.sh
 ./disable-services.sh
 
+gcloud services enable serviceusage.googleapis.com
+
 # service account
 gcloud iam service-accounts delete terraform@dev-chottodake-open-test.iam.gserviceaccount.com --quiet
 gcloud iam service-accounts create terraform \
-# --description="terraform" \
-# --display-name="terraform"
 
 gcloud projects add-iam-policy-binding dev-chottodake-open-test \
 --member="serviceAccount:terraform@dev-chottodake-open-test.iam.gserviceaccount.com" \
@@ -32,9 +32,7 @@ gcloud secrets create terraform-key-json --quiet \
 --data-file="/tmp/terraform-key.json"
 
 # create buckets for tfstate
-# gcloud services enable storage.googleapis.com
-# sleep 5
-# gcloud storage buckets create gs://test2.open.chottodake.dev \
-# --default-storage-class="STANDARD" \
-# --location="ASIA-NORTHEAST2" \
-# --uniform-bucket-level-access
+gcloud storage buckets create gs://test.open.chottodake.dev \
+--default-storage-class="STANDARD" \
+--location="ASIA-NORTHEAST2" \
+--uniform-bucket-level-access
