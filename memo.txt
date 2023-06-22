@@ -108,8 +108,3 @@ terraform graph | dot -Tpng > graph.png
 # alias-memo
 alias h='cat ~/.bash_history | sort | uniq | grep -v "h " | grep '
 ```
-
-```
-# git-memo
-git init
-```
