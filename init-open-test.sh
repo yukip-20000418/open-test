@@ -47,6 +47,8 @@ gcloud secrets create terraform-key-json --quiet \
 
 
 # create buckets for tfstate
+gcloud storage rm -r gs://test.open.chottodake.dev
+
 gcloud storage buckets create gs://test.open.chottodake.dev \
 --default-storage-class="STANDARD" \
 --location="ASIA-NORTHEAST2" \
