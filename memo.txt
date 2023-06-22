@@ -90,6 +90,11 @@ gcloud config set project dev-chottodake-open-test
 
 gcloud services list --format='csv(TITLE,NAME)'
 
+# api & service list
+gcloud services list --available --format='text(TITLE,NAME)' \
+> ./all-services.txt
+
+
 gcloud services enable cloudresourcemanager.googleapis.com
 gcloud services enable compute.googleapis.com
 gcloud services disable compute.googleapis.com --force
