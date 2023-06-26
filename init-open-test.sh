@@ -25,16 +25,16 @@ gcloud services enable serviceusage.googleapis.com
 
 
 # service account
-gcloud iam service-accounts delete terraform@dev-chottodake-open-test.iam.gserviceaccount.com --quiet
+# gcloud iam service-accounts delete terraform@dev-chottodake-open-test.iam.gserviceaccount.com --quiet
 
-gcloud iam service-accounts create terraform
+# gcloud iam service-accounts create terraform
 
-gcloud projects add-iam-policy-binding dev-chottodake-open-test \
---member="serviceAccount:terraform@dev-chottodake-open-test.iam.gserviceaccount.com" \
---role="roles/owner"
+# gcloud projects add-iam-policy-binding dev-chottodake-open-test \
+# --member="serviceAccount:terraform@dev-chottodake-open-test.iam.gserviceaccount.com" \
+# --role="roles/owner"
 
-gcloud iam service-accounts keys create ~/terraform-key.json \
---iam-account="terraform@dev-chottodake-open-test.iam.gserviceaccount.com"
+# gcloud iam service-accounts keys create ~/terraform-key.json \
+# --iam-account="terraform@dev-chottodake-open-test.iam.gserviceaccount.com"
 
 
 # secret manager
