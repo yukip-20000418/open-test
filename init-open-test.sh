@@ -12,7 +12,7 @@ gcloud services list --format='csv(TITLE,NAME)' \
 | awk -F, '{
   printf("# ")
   for(i=1;i<NF;++i){printf("%s ",$i)}
-  printf("\ngcloud service disable %s --force\n",$NF)}' \
+  printf("\ngcloud services disable %s --force\n",$NF)}' \
 > /tmp/disable-services-open-test.sh
 
 
@@ -33,20 +33,20 @@ gcloud projects add-iam-policy-binding dev-chottodake-open-test \
 --member="serviceAccount:terraform@dev-chottodake-open-test.iam.gserviceaccount.com" \
 --role="roles/owner"
 
-gcloud iam service-accounts keys create /tmp/terraform-key.json \
+gcloud iam service-accounts keys create ~/terraform-key.json \
 --iam-account="terraform@dev-chottodake-open-test.iam.gserviceaccount.com"
 
 
 # secret manager
-gcloud services enable secretmanager.googleapis.com
+# gcloud services enable secretmanager.googleapis.com
 
-sleep 5
+# sleep 5
 
-gcloud secrets delete terraform-key-json --quiet
+# gcloud secrets delete terraform-key-json --quiet
 
-gcloud secrets create terraform-key-json --quiet \
---replication-policy="automatic" \
---data-file="/tmp/terraform-key.json"
+# gcloud secrets create terraform-key-json --quiet \
+# --replication-policy="automatic" \
+# --data-file="/tmp/terraform-key.json"
 
 
 # create buckets for tfstate
