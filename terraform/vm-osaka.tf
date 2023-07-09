@@ -7,17 +7,23 @@ resource "google_service_account" "osaka" {
 # compute instance
 resource "google_compute_instance" "osaka" {
   name = "osaka"
-  tags = ["ssh"]
+  tags = ["ssh", "debug"]
 
   machine_type = "e2-medium"
   zone         = "asia-northeast2-a"
 
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-11"
+      image = "ubuntu-os-cloud/ubuntu-minimal-2204-jammy-v20230428"
       size  = "10"
       type  = "pd-balanced"
     }
+  }
+
+  metadata_startup_script = file("./init-vm.sh")
+
+  metadata = {
+    enable_oslogin = "false"
   }
 
   hostname = "osaka.chottodake.dev"
