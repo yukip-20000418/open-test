@@ -29,8 +29,8 @@ cat <<'END' | sed 's/^ \{4\}//' > /home/$username/init.sh
     flutter config --no-enable-windows-desktop
     flutter config --no-enable-custom-devices
 
-    ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N "" -C "yukip@chottodake.dev"
-    cat ~/.ssh/id_rsa.pub
+    git config --global user.name "yukip"
+    git config --global user.email "yukip@chottodake.dev"
 END
 
 chmod 744 /home/$username/init.sh >> $logname 2>&1
@@ -44,9 +44,9 @@ if ! test -e /home/$username/yukip.bashrc; then
         export TZ=Asia/Tokyo
 
         # history
-        HISTSIZE=20000
+        HISTSIZE=200000
         HISTFILESIZE=20000
-        alias hist='history 20000 | grep -v "hist " | grep --color=never'
+        alias hist='history | grep -v "hist " | grep --color=never'
 
         # etc
         unalias l
