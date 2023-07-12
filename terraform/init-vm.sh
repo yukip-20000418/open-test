@@ -61,7 +61,7 @@ if ! test -e /home/$username/yukip.bashrc; then
         alias gitdiff='git fetch;git diff --name-status master origin/master'
 
         # prompt
-        PS1='\n\e[1;33m[$(date +%Y/%m/%d) \t \w]\n\$\e[0m '
+        PS1='\n\[\e[1;33m\][$(date +%Y/%m/%d) \t \w]\n\$\[\e[0m\] '
 ....END
 
     chmod 664 /home/$username/yukip.bashrc >> $logname 2>&1
