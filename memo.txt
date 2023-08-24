@@ -113,3 +113,98 @@ terraform graph | dot -Tpng > graph.png
 # alias-memo
 alias h='cat ~/.bash_history | sort | uniq | grep -v "h " | grep '
 ```
+
+cloudshellで実行したhistory抜粋memo
+```
+    6  git config --global --add safe.directory /google/flutter
+    7  flutter --version
+    8  dart --version
+
+   13  flutterfire
+   14  firebase --version
+   15  firebase projects:list
+   16  firebase login --no-localhost
+   17  firebase projects:list
+   18  dart pub global activate flutterfire_cli
+   19  export PATH="$PATH":"$HOME/.pub-cache/bin"
+   22  flutterfire
+   23  flutter create
+   24  la
+   25  flutter create xxx
+   26  cd xxx
+   27  ll
+   28  flutterfire
+   29  flutterfire configure
+   30  firebase projects:list
+   31  firebase --help
+   32  flutterfire configure --project=dev-chottodake-open-test
+   33  firebase projects:addfirebase dev-chottodake-open-test
+   40  firebase apps:list --project dev-chottodake-open-test
+   41  firebase database:instances:list --project dev-chottodake-open-test
+   43  firebase --project dev-chottodake-open-test apps:list
+   46  firebase --project dev-chottodake-open-test target
+   47  firebase --project dev-chottodake-open-test projects:list
+   49  flutterfire configure --project=dev-chottodake-open-test
+   57  firebase init
+   75  firebase login
+   76  firebase projects:list
+   77  flutter --version
+   78  flutter doctor
+   79  flutter doctor -v
+   83  cd .config
+   85  cd flutter
+   88  cat sett*
+   90  flutter create abc
+   91  cd abc
+   97  export PATH="$PATH":"$HOME/.pub-cache/bin"
+   98  flutterfire configure --project=dev-chottodake-open-test
+  101  firebase --project dev-chottodake-open-test apps:list
+  102  flutterfire configure --project=dev-chottodake-open-test
+  105  git config --global --list
+  107  git clone https://github.com/yukip-20000418/open-test.git
+  108  cd open-test
+  109  cd terraform
+  113  terraform init
+  114  terraform plan
+  115  terraform apply
+```
+
+VMインスタンス内で実行したhistory
+```
+$ history
+    4  cat init.sh
+    5  ./init.sh
+    7  cat /start*txt
+    8  sudo reboot
+   11  cd hello
+   14  dart devtools
+   16  dart pub global
+   17  dart pub global list
+   18  dart pub global activate devtools
+   19  dart pub global list
+   22  view pubspec.yaml
+   23  dart pub global activate devtools
+   25  cat pubspec.yaml | grep sdk
+   26  dart pub global activate devtools --no-sound-null-safety
+   27  dart
+   28  dart help devtools
+   29  dart devtools --version
+   30  dart devtools -v
+   31  flutter upgrade
+   32  exit
+   33  git --version
+   34  flutter --version
+   35  flutter doctor
+   36  git clone https://github.com/yukip-20000418/hello.git
+   37  cd hello
+   40  cd lib
+   42  vi *options.dart
+   45  cd ..
+   47  view pubspec.yaml
+   48  view ana*yaml
+   51  flutter run -d web-server --web-port 34567 --web-hostname 0.0.0.0
+   52  dart devtools
+   53  flutter run -d web-server --web-port 34567 --web-hostname 0.0.0.0
+   54  exit
+   55  history
+```
