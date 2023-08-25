@@ -19,7 +19,10 @@ cat <<'END' | sed 's/^ \{4\}//' > /home/$username/init.sh
     sudo apt install -y git
     sudo apt install -y vim
 
+    #sudo snap install chromium
+
     sudo snap install flutter --classic
+
     flutter --version
 
     flutter config --no-enable-android
@@ -28,6 +31,10 @@ cat <<'END' | sed 's/^ \{4\}//' > /home/$username/init.sh
     flutter config --no-enable-macos-desktop
     flutter config --no-enable-windows-desktop
     flutter config --no-enable-custom-devices
+
+    curl -sL https://firebase.tools | bash
+
+    dart pub global activate flutterfire_cli
 
     git config --global user.name "yukip"
     git config --global user.email "yukip@chottodake.dev"
@@ -42,6 +49,8 @@ if ! test -e /home/$username/yukip.bashrc; then
     cat <<'....END' | sed 's/^ \{8\}//' > /home/$username/yukip.bashrc
         # env
         export TZ=Asia/Tokyo
+        export PATH="$PATH":"$HOME/.pub-cache/bin"
+        #export CHROME_EXECUTABLE="/snap/bin/chromium"
 
         # history
         HISTSIZE=200000
