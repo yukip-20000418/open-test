@@ -23,30 +23,31 @@ bash -v /tmp/disable-services-open-test.sh
 # api & service enable
 gcloud services enable serviceusage.googleapis.com
 
+# ここからのサービスアカウントとキーは使わなくなったはず
+# # service account
+# gcloud iam service-accounts delete terraform@dev-chottodake-open-test.iam.gserviceaccount.com --quiet
 
-# service account
-gcloud iam service-accounts delete terraform@dev-chottodake-open-test.iam.gserviceaccount.com --quiet
+# gcloud iam service-accounts create terraform
 
-gcloud iam service-accounts create terraform
+# gcloud projects add-iam-policy-binding dev-chottodake-open-test \
+# --member="serviceAccount:terraform@dev-chottodake-open-test.iam.gserviceaccount.com" \
+# --role="roles/owner"
 
-gcloud projects add-iam-policy-binding dev-chottodake-open-test \
---member="serviceAccount:terraform@dev-chottodake-open-test.iam.gserviceaccount.com" \
---role="roles/owner"
-
-gcloud iam service-accounts keys create /tmp/terraform-key.json \
---iam-account="terraform@dev-chottodake-open-test.iam.gserviceaccount.com"
+# gcloud iam service-accounts keys create /tmp/terraform-key.json \
+# --iam-account="terraform@dev-chottodake-open-test.iam.gserviceaccount.com"
 
 
-# secret manager
-gcloud services enable secretmanager.googleapis.com
+# # secret manager
+# gcloud services enable secretmanager.googleapis.com
 
-sleep 5
+# sleep 5
 
-gcloud secrets delete terraform-key-json --quiet
+# gcloud secrets delete terraform-key-json --quiet
 
-gcloud secrets create terraform-key-json --quiet \
---replication-policy="automatic" \
---data-file="/tmp/terraform-key.json"
+# gcloud secrets create terraform-key-json --quiet \
+# --replication-policy="automatic" \
+# --data-file="/tmp/terraform-key.json"
+# ここまでのサービスアカウントとキーは使わなくなったはず
 
 
 # create buckets for tfstate
