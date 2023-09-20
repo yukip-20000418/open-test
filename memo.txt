@@ -134,3 +134,8 @@ flutter build web
 cd build/web
 python3 -m http.server 34567
 ```
+
+VMインスタンスの起動スクリプトのログの見方
+```
+sudo journalctl -u google-startup-scripts.service
+```
