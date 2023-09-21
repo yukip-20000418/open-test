@@ -60,8 +60,10 @@ if ! test -e /home/$username/yukip.bashrc; then
         # etc
         unalias l
         unalias grep
-        alias la='ls -al'
+        alias ls='ls --color=always'
+        alias la='ls -a'
         alias ll='ls -l'
+        alias lla='ls -la'
 
         # git
         alias gitlog='git fetch;git log --oneline --graph --all origin/master'
