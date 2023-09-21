@@ -98,7 +98,7 @@ resource "google_compute_firewall" "debug" {
 resource "google_compute_project_metadata" "default" {
   metadata = {
     ssh-keys = <<EOF
-      ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAUdeHWpkJIfAkqoimFMPxqOEb8Hbq3Fqui4M9yPKAt1 yukip
+      ubuntu:ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAUdeHWpkJIfAkqoimFMPxqOEb8Hbq3Fqui4M9yPKAt1 yukip
     EOF
   }
   depends_on = [google_project_service.compute]
